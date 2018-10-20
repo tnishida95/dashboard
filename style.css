@@ -1,0 +1,15 @@
+.week-row {
+  display: flex;
+}
+
+.calendar-day {
+  height: 100px;
+  min-width: 44px;
+  background-color: rgba(0,0,0,0.1);
+  flex-grow: 1;
+  margin: 1px;
+}
+
+#calendar-container {
+  margin: 10px;
+}
