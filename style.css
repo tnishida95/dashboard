@@ -1,15 +1,38 @@
-.week-row {
+body {
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+.week {
   display: flex;
+  margin: 1px;
 }
 
 .calendar-day {
-  height: 100px;
-  min-width: 44px;
-  background-color: rgba(0,0,0,0.1);
+  border-color: black;
+  border-style: solid;
+  border-width: 2px 0px 0px;
   flex-grow: 1;
+  height: 100px;
   margin: 1px;
+  min-width: 44px;
+  opacity: 0.50;
 }
 
 #calendar-container {
   margin: 10px;
+}
+
+#time, #date {
+  flex-grow: 1;
+  margin: 20px;
+  vertical-align: middle;
+}
+
+#time {
+  font-weight: bold;
+}
+
+#date {
+  text-align: right;
 }
