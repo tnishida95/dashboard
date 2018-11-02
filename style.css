@@ -1,6 +1,7 @@
 body {
-  font-family: 'Open Sans', sans-serif;
-
+  background-image: url("https://i.redd.it/jxfvdc5eskwz.jpg");
+  filter: drop-shadow(5px 5px 2px black);
+  font-family: 'Lato', sans-serif;
 }
 
 .week {
@@ -9,17 +10,21 @@ body {
 }
 
 .calendar-day {
-  border-color: black;
+  border-color: white;
   border-style: solid;
   border-width: 2px 0px 0px;
+  color: white;
   flex-grow: 1;
+  font-size: 1em;
   height: 100px;
   margin: 1px;
+  min-height: 100px;
   min-width: 44px;
   opacity: 0.50;
 }
 
 #calendar-container {
+  color: white;
   margin: 10px;
 }
 
@@ -27,6 +32,7 @@ body {
   flex-grow: 1;
   margin: 20px;
   vertical-align: middle;
+  color: white;
 }
 
 #time {
