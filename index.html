@@ -9,8 +9,10 @@
   <script src="node_modules\moment\moment.js"></script>
   <script>
 
-    var daysFromSunday = moment().date(1).format("d");
-    var firstDay = moment().date(1).subtract(daysFromSunday, "days");
+    function getFirstDay() {
+      let daysFromSunday = moment().date(1).format("d");
+      return moment().date(1).subtract(daysFromSunday, "days");
+    }
 
     function init() {
       updateTime();
@@ -18,10 +20,12 @@
       initDate();
       generateCalendar();
       hightlightCurrentDay();
+      fadePastDates();
     }
 
     function updateTime() {
-      document.getElementById("time").innerHTML = moment().format("hh:mm:ss");
+      document.getElementById("hour-and-minute").innerHTML = moment().format("hh:mm");
+      document.getElementById("seconds").innerHTML = ":" + moment().format("ss");
     }
 
     function initDate() {
@@ -29,9 +33,9 @@
     }
 
     function generateCalendar() {
-      const cellTemplate = `<div id="toReplace_date" class="calendar-day">toReplace_day<p class="event-text">Event</p></div>`;
+      const cellTemplate = `<div id="toReplace_date" class="calendar-day"><h3>toReplace_day</h3><h6 class="event-text">Event</h6></div>`;
 
-      let currentDay = firstDay;
+      let currentDay = getFirstDay();
       let calendarStr = "";
       for(let i = 0; i < 6; i++) {
         calendarStr += `<div id="week${i}" class="week">`;
@@ -47,6 +51,23 @@
     function hightlightCurrentDay() {
       let currentDay = moment().format("MMDD");
       document.getElementById(currentDay).style.opacity = 1;
+      document.getElementById(currentDay).style.backgroundImage = "linear-gradient(rgba(0,0,0,0.5), rgba(255,255,255,0))";
+      document.getElementById(currentDay).style.borderColor = "white";
+      document.getElementById(currentDay).style.borderWidth = "3px 0px 0px";
+    }
+
+    function fadePastDates() {
+      let currentDay = getFirstDay();
+      console.log("currentDay = " + currentDay.format("MMDD"));
+      while(currentDay.format("MMDD") !== moment().format("MMDD")) {
+        console.log(`${currentDay.format("MMDD")} !== ${moment().format("MMDD")}`);
+        let currentDayId = currentDay.format("MMDD");
+        console.log(currentDayId);
+        document.getElementById(currentDayId).style.opacity = 0.2;
+        document.getElementById(currentDayId).style.color = "black";
+        document.getElementById(currentDayId).style.borderColor = "black";
+        currentDay.add(1, "days");
+      }
     }
 
   </script>
@@ -54,7 +75,10 @@
 
 <body onload="init()">
   <div id="header" style="display: flex;">
-    <h1 id="time">hh:mm:ss</h1>
+    <div id="time">
+      <h1 id="hour-and-minute">hh:mm</h1>
+      <h5 id="seconds">:ss</h5>
+    </div>
     <h1 id="date">dddd, MMMM D, YYYY</h1>
   </div>
 
